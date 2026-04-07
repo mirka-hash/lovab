@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<title>Preview – Ecosystem Embed</title>
+<style>
+  body {
+    background: #D4F03D; /* preview only – same as the card background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     WEBFLOW EMBED CODE — copy everything between these comments
+     and paste into a Webflow Embed element.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  .veco-scene {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    height: 280px;
+    margin: 0 auto;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Floating keyframes – each pill gets its own ── */
+  @keyframes veco-f1 {
+    0%, 100% { transform: rotate(-8deg) translateY(0px); }
+    50%       { transform: rotate(-8deg) translateY(-8px); }
+  }
+  @keyframes veco-f2 {
+    0%, 100% { transform: rotate(5deg) translateY(0px); }
+    50%       { transform: rotate(5deg) translateY(-10px); }
+  }
+  @keyframes veco-f3 {
+    0%, 100% { transform: rotate(-4deg) translateY(0px); }
+    50%       { transform: rotate(-4deg) translateY(-7px); }
+  }
+  @keyframes veco-f4 {
+    0%, 100% { transform: rotate(7deg) translateY(0px); }
+    50%       { transform: rotate(7deg) translateY(-9px); }
+  }
+  @keyframes veco-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50%       { transform: translate(-50%, -50%) scale(1.06); }
+  }
+
+  /* ── Pill base ── */
+  .veco-pill {
+    position: absolute;
+    background: #1A1A1A;
+    border-radius: 100px;
+    padding: 13px 22px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    white-space: nowrap;
+  }
+  .veco-pill-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    background: #F97316;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .veco-pill-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.1px;
+  }
+
+  /* ── Individual positions & animations ── */
+  .veco-p1 { left: 18px;  bottom: 56px; animation: veco-f1 4.2s ease-in-out infinite; }
+  .veco-p2 { left: 150px; top: 28px;    animation: veco-f2 3.8s ease-in-out infinite 0.7s; }
+  .veco-p3 { right: 24px; top: 54px;    animation: veco-f3 4.6s ease-in-out infinite 1.3s; }
+  .veco-p4 { right: 54px; bottom: 40px; animation: veco-f4 4.0s ease-in-out infinite 0.4s; }
+
+  /* ── Hub ── */
+  .veco-hub-ring {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    background: rgba(26,26,26,0.1);
+  }
+  .veco-hub {
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: #1A1A1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    animation: veco-pulse 3.5s ease-in-out infinite;
+  }
+
+  /* ── SVG lines layer ── */
+  .veco-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+</style>
+
+<div class="veco-scene">
+
+  <!-- Connection lines -->
+  <svg class="veco-lines" viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
+    <line x1="148" y1="200" x2="260" y2="140" stroke="#1A1A1A" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.18"/>
+    <line x1="238" y1="54"  x2="260" y2="140" stroke="#1A1A1A" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.18"/>
+    <line x1="376" y1="80"  x2="260" y2="140" stroke="#1A1A1A" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.18"/>
+    <line x1="380" y1="216" x2="260" y2="140" stroke="#1A1A1A" stroke-width="1.5" stroke-dasharray="5 5" opacity="0.18"/>
+  </svg>
+
+  <!-- Hub -->
+  <div class="veco-hub-ring"></div>
+  <div class="veco-hub">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M4 4L10 16L16 4" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- Pill 1: Pokladňa -->
+  <div class="veco-pill veco-p1">
+    <div class="veco-pill-icon">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="5" width="12" height="8" rx="1.5" stroke="white" stroke-width="1.5"/>
+        <path d="M4 5V3.5C4 2.67 4.67 2 5.5 2h3C9.33 2 10 2.67 10 3.5V5" stroke="white" stroke-width="1.5"/>
+        <rect x="4" y="8" width="2" height="2" rx="0.5" fill="white"/>
+        <rect x="7" y="8" width="2" height="2" rx="0.5" fill="white"/>
+      </svg>
+    </div>
+    <span class="veco-pill-label">Pokladňa</span>
+  </div>
+
+  <!-- Pill 2: Terminál -->
+  <div class="veco-pill veco-p2">
+    <div class="veco-pill-icon">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="3" width="12" height="8" rx="1.5" stroke="white" stroke-width="1.5"/>
+        <path d="M1 6h12" stroke="white" stroke-width="1.5"/>
+        <rect x="3" y="8" width="3" height="1.5" rx="0.4" fill="white"/>
+      </svg>
+    </div>
+    <span class="veco-pill-label">Terminál</span>
+  </div>
+
+  <!-- Pill 3: Admin portál -->
+  <div class="veco-pill veco-p3">
+    <div class="veco-pill-icon">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="1" width="5" height="5" rx="1" fill="white"/>
+        <rect x="8" y="1" width="5" height="5" rx="1" fill="white" opacity="0.7"/>
+        <rect x="1" y="8" width="5" height="5" rx="1" fill="white" opacity="0.7"/>
+        <rect x="8" y="8" width="5" height="5" rx="1" fill="white" opacity="0.5"/>
+      </svg>
+    </div>
+    <span class="veco-pill-label">Admin portál</span>
+  </div>
+
+  <!-- Pill 4: Mobilná appka -->
+  <div class="veco-pill veco-p4">
+    <div class="veco-pill-icon">
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+        <rect x="3" y="1" width="8" height="12" rx="2" stroke="white" stroke-width="1.5"/>
+        <circle cx="7" cy="11" r="0.8" fill="white"/>
+      </svg>
+    </div>
+    <span class="veco-pill-label">Mobilná appka</span>
+  </div>
+
+</div>
+
+<!-- ============================================================
+     END OF WEBFLOW EMBED CODE
+     ============================================================ -->
+
+</body>
+</html>
