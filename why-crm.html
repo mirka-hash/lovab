@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veslo – Viac leadov, viac nástrojov</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrapper {
+    width: 420px;
+    background: transparent;
+  }
+
+  .panel {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 22px 24px 20px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  /* Top row: lead count + progress bar */
+  .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .lead-count {
+    flex-shrink: 0;
+  }
+
+  .lead-count-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #B0A89E;
+    margin-bottom: 2px;
+  }
+
+  .lead-count-value {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+  }
+
+  .lead-count-value .current {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1A1A1A;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .lead-count-value .separator {
+    font-size: 14px;
+    font-weight: 500;
+    color: #C8C0B8;
+  }
+
+  .lead-count-value .total {
+    font-size: 14px;
+    font-weight: 600;
+    color: #B0A89E;
+  }
+
+  .lead-count-value .unit {
+    font-size: 12px;
+    font-weight: 500;
+    color: #C8C0B8;
+    margin-left: 2px;
+  }
+
+  .progress-wrap {
+    flex: 1;
+  }
+
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .progress-meta-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #B0A89E;
+  }
+
+  .progress-pct {
+    font-size: 11px;
+    font-weight: 700;
+    color: #F97316;
+  }
+
+  .progress-track {
+    width: 100%;
+    height: 8px;
+    background: #EDE8E3;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    width: 94%;
+    background: linear-gradient(90deg, #FB923C, #F97316);
+    border-radius: 99px;
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: #F0EDE9;
+    margin-bottom: 14px;
+  }
+
+  /* Lead rows */
+  .lead-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 14px;
+  }
+
+  .lead-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: #FAFAF9;
+  }
+
+  .lead-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .lead-dot.green  { background: #22C55E; }
+  .lead-dot.orange { background: #F97316; }
+  .lead-dot.grey   { background: #C8C0B8; }
+
+  .lead-name {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1A1A1A;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  /* Status pills */
+  .pill {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 3px 9px;
+    white-space: nowrap;
+  }
+
+  .pill.active {
+    background: #FEF3E8;
+    color: #F97316;
+  }
+
+  .pill.contract {
+    background: #F5F3F1;
+    color: #78716C;
+  }
+
+  .pill.lead {
+    background: #F0EFEE;
+    color: #A8A09A;
+  }
+
+  /* Lock row */
+  .lock-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1.5px dashed #DDD8D3;
+    border-radius: 10px;
+    background: #FAFAF9;
+  }
+
+  .lock-icon {
+    width: 24px;
+    height: 24px;
+    background: #F0EDE9;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .lock-text {
+    flex: 1;
+    font-size: 12px;
+    color: #A8A09A;
+    font-weight: 400;
+    line-height: 1.35;
+  }
+
+  .lock-text strong {
+    font-weight: 600;
+    color: #78716C;
+  }
+
+  .lock-badge {
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 700;
+    color: #B0A89E;
+    background: #EDE8E3;
+    border-radius: 99px;
+    padding: 2px 8px;
+    letter-spacing: 0.3px;
+  }
+
+  /* Export button */
+  #export-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1A1A1A;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  }
+  #export-btn:hover { background: #333; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="panel">
+
+    <!-- Top: count + progress -->
+    <div class="top-row">
+      <div class="lead-count">
+        <div class="lead-count-label">Tvoje leady</div>
+        <div class="lead-count-value">
+          <span class="current">47</span>
+          <span class="separator">/</span>
+          <span class="total">50</span>
+          <span class="unit">leadov</span>
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-meta">
+          <span class="progress-meta-label">Postup k CRM portálu</span>
+          <span class="progress-pct">94 %</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Lead rows -->
+    <div class="lead-list">
+      <div class="lead-row">
+        <div class="lead-dot green"></div>
+        <span class="lead-name">Reštaurácia Starý Dvor</span>
+        <span class="pill active">Aktívna</span>
+      </div>
+      <div class="lead-row">
+        <div class="lead-dot orange"></div>
+        <span class="lead-name">Pekáreň u Novákov</span>
+        <span class="pill contract">Zmluva</span>
+      </div>
+      <div class="lead-row">
+        <div class="lead-dot grey"></div>
+        <span class="lead-name">Butik Móda</span>
+        <span class="pill lead">Lead</span>
+      </div>
+    </div>
+
+    <!-- Lock row -->
+    <div class="lock-row">
+      <div class="lock-icon">
+        <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
+          <rect x="1" y="6" width="10" height="7.5" rx="2" fill="#A8A09A"/>
+          <path d="M3.5 6V4.5C3.5 3.12 4.62 2 6 2C7.38 2 8.5 3.12 8.5 4.5V6" stroke="#A8A09A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <circle cx="6" cy="9.5" r="1" fill="white"/>
+        </svg>
+      </div>
+      <div class="lock-text">
+        <strong>3 leady</strong> do odomknutia CRM portálu
+      </div>
+      <div class="lock-badge">ČOSKORO</div>
+    </div>
+
+  </div>
+</div>
+
+<button id="export-btn">⬇ Export PNG</button>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+  document.getElementById('export-btn').addEventListener('click', function() {
+    const btn = document.getElementById('export-btn');
+    btn.style.display = 'none';
+    html2canvas(document.querySelector('.wrapper'), {
+      backgroundColor: null,
+      scale: 3,
+      useCORS: true,
+      logging: false
+    }).then(function(canvas) {
+      const link = document.createElement('a');
+      link.download = 'veslo-why-crm.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      btn.style.display = '';
+    });
+  });
+</script>
+</body>
+</html>

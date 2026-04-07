@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veslo – Neriešiš nič okrem kontaktu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrapper {
+    width: 420px;
+    background: transparent;
+  }
+
+  /* White panel */
+  .panel {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 24px 26px 22px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  /* Panel heading */
+  .panel-heading {
+    font-size: 11px;
+    font-weight: 600;
+    color: #B0A89E;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  /* Two-column split */
+  .split {
+    display: flex;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .col-left {
+    padding-right: 20px;
+  }
+
+  .col-right {
+    padding-left: 20px;
+  }
+
+  .divider {
+    width: 1px;
+    background: #EDE8E3;
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+
+  /* Column headers */
+  .col-header {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .col-header.left-header .header-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: #FEF3E8;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    color: #F97316;
+    flex-shrink: 0;
+  }
+
+  .col-header.right-header .header-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: #F5F3F1;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    color: #B0A89E;
+    flex-shrink: 0;
+  }
+
+  /* Row items */
+  .check-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 0;
+  }
+
+  .check-row + .check-row {
+    border-top: 1px solid #F5F3F1;
+  }
+
+  .check-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .check-icon.orange {
+    background: #F97316;
+    box-shadow: 0 2px 6px rgba(249,115,22,0.30);
+  }
+
+  .check-icon.grey {
+    background: #EDE8E3;
+  }
+
+  .check-icon svg {
+    display: block;
+  }
+
+  .check-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1A1A1A;
+    line-height: 1.3;
+  }
+
+  /* Left column has only one row — vertically center it in the space */
+  .col-left-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  /* Footer note */
+  .panel-footer {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #F0EDE9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-icon {
+    width: 28px;
+    height: 28px;
+    background: #FEF3E8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+
+  .footer-text {
+    font-size: 12px;
+    color: #B0A89E;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .footer-text strong {
+    color: #F97316;
+    font-weight: 600;
+  }
+
+  /* Export button */
+  #export-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1A1A1A;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  }
+  #export-btn:hover { background: #333; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="panel">
+    <div class="panel-heading">Rozdelenie zodpovednosti</div>
+
+    <div class="split">
+      <!-- Left column: Ty -->
+      <div class="col col-left">
+        <div class="col-header left-header">
+          <span class="header-badge">1</span>
+          Ty
+        </div>
+        <div class="col-left-body">
+          <div class="check-row">
+            <div class="check-icon orange">
+              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="check-label">Odošleš kontakt</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical divider -->
+      <div class="divider"></div>
+
+      <!-- Right column: Veslo -->
+      <div class="col col-right">
+        <div class="col-header right-header">
+          <span class="header-badge">5</span>
+          Veslo
+        </div>
+        <div class="check-row">
+          <div class="check-icon grey">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="#B0A89E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="check-label" style="color:#4A4540;">Prvý hovor</span>
+        </div>
+        <div class="check-row">
+          <div class="check-icon grey">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="#B0A89E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="check-label" style="color:#4A4540;">Zmluva</span>
+        </div>
+        <div class="check-row">
+          <div class="check-icon grey">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="#B0A89E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="check-label" style="color:#4A4540;">Inštalácia</span>
+        </div>
+        <div class="check-row">
+          <div class="check-icon grey">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="#B0A89E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="check-label" style="color:#4A4540;">Školenie</span>
+        </div>
+        <div class="check-row">
+          <div class="check-icon grey">
+            <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+              <path d="M1 4L3.5 6.5L9 1" stroke="#B0A89E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="check-label" style="color:#4A4540;">Podpora</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="footer-icon">🎯</div>
+      <div class="footer-text">
+        Tvoja jediná úloha: <strong>odoslať kontakt.</strong> Zvyšok riešime my.
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="export-btn">⬇ Export PNG</button>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+  document.getElementById('export-btn').addEventListener('click', function() {
+    const btn = document.getElementById('export-btn');
+    btn.style.display = 'none';
+    html2canvas(document.querySelector('.wrapper'), {
+      backgroundColor: null,
+      scale: 3,
+      useCORS: true,
+      logging: false
+    }).then(function(canvas) {
+      const link = document.createElement('a');
+      link.download = 'veslo-why-contact.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      btn.style.display = '';
+    });
+  });
+</script>
+</body>
+</html>

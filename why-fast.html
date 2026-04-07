@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veslo – Prevádzka začne predávať rýchlo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrapper {
+    width: 420px;
+    background: transparent;
+  }
+
+  .panel {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 26px 28px 22px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .panel-heading {
+    font-size: 11px;
+    font-weight: 600;
+    color: #B0A89E;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .panel-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 24px;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  /* Connecting line behind circles */
+  .timeline-track {
+    position: absolute;
+    top: 13px; /* center of small circles (26px / 2) */
+    left: 13px;
+    right: 13px;
+    height: 2px;
+    background: #EDE8E3;
+    z-index: 0;
+  }
+
+  /* Last segment turns orange: from step 4 center to step 5 center */
+  /* Steps are evenly distributed. 5 steps, gap between is 25% each.
+     Last segment = 75%..100% of the track width. */
+  .timeline-track::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* Width = 1 segment = 25% of track (4 gaps for 5 steps) */
+    width: 25%;
+    height: 2px;
+    background: #F97316;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+    flex: 1;
+  }
+
+  /* Small grey circles for steps 1–4 */
+  .step-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #EDE8E3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Large orange circle for step 5 */
+  .step-circle.active {
+    width: 34px;
+    height: 34px;
+    background: #F97316;
+    box-shadow: 0 3px 12px rgba(249,115,22,0.35);
+    margin-top: -4px; /* visually center with the track */
+  }
+
+  .step-circle svg {
+    display: block;
+  }
+
+  .step-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1A1A1A;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .step-day {
+    font-size: 10px;
+    font-weight: 400;
+    color: #B0A89E;
+    text-align: center;
+    margin-top: -4px;
+  }
+
+  /* Active badge */
+  .active-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: 20px;
+    padding: 3px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #16A34A;
+    letter-spacing: 0.3px;
+    margin-top: -2px;
+  }
+
+  .active-badge-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #22C55E;
+    flex-shrink: 0;
+  }
+
+  /* Footer note */
+  .panel-footer {
+    padding-top: 16px;
+    border-top: 1px solid #F0EDE9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-icon-wrap {
+    width: 28px;
+    height: 28px;
+    background: #FEF3E8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: #B0A89E;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .footer-note strong {
+    color: #F97316;
+    font-weight: 600;
+  }
+
+  /* Export button */
+  #export-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1A1A1A;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  }
+  #export-btn:hover { background: #333; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div class="panel">
+    <div class="panel-heading">Onboarding</div>
+    <div class="panel-title">Od leadu po aktívnu prevádzku za 7 dní</div>
+
+    <div class="timeline">
+      <!-- Connecting track -->
+      <div class="timeline-track"></div>
+
+      <!-- Step 1: Lead -->
+      <div class="step">
+        <div class="step-circle">
+          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+            <path d="M1.5 4.5L4 7L9.5 1.5" stroke="#B0A89E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-label">Lead</div>
+        <div class="step-day">Deň 1</div>
+      </div>
+
+      <!-- Step 2: Hovor -->
+      <div class="step">
+        <div class="step-circle">
+          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+            <path d="M1.5 4.5L4 7L9.5 1.5" stroke="#B0A89E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-label">Hovor</div>
+        <div class="step-day">Deň 2</div>
+      </div>
+
+      <!-- Step 3: Zmluva -->
+      <div class="step">
+        <div class="step-circle">
+          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+            <path d="M1.5 4.5L4 7L9.5 1.5" stroke="#B0A89E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-label">Zmluva</div>
+        <div class="step-day">Deň 4</div>
+      </div>
+
+      <!-- Step 4: Inštalácia -->
+      <div class="step">
+        <div class="step-circle">
+          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
+            <path d="M1.5 4.5L4 7L9.5 1.5" stroke="#B0A89E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-label">Inštalácia</div>
+        <div class="step-day">Deň 6</div>
+      </div>
+
+      <!-- Step 5: Aktívna -->
+      <div class="step">
+        <div class="step-circle active">
+          <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
+            <path d="M1.5 5.5L5 9L12.5 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-label" style="color:#F97316;">Aktívna</div>
+        <div class="step-day">Deň 7</div>
+        <div class="active-badge">
+          <div class="active-badge-dot"></div>
+          AKTÍVNA
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="footer-icon-wrap">💸</div>
+      <div class="footer-note">
+        Odmena vyplatená <strong>hneď ďalší mesiac</strong> po aktivácii prevádzky.
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="export-btn">⬇ Export PNG</button>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+  document.getElementById('export-btn').addEventListener('click', function() {
+    const btn = document.getElementById('export-btn');
+    btn.style.display = 'none';
+    html2canvas(document.querySelector('.wrapper'), {
+      backgroundColor: null,
+      scale: 3,
+      useCORS: true,
+      logging: false
+    }).then(function(canvas) {
+      const link = document.createElement('a');
+      link.download = 'veslo-why-fast.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      btn.style.display = '';
+    });
+  });
+</script>
+</body>
+</html>
