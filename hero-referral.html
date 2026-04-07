@@ -343,6 +343,24 @@
     color: #F97316;
     margin-top: 2px;
   }
+
+  #export-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1A1A1A;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  }
+  #export-btn:hover { background: #333; }
 </style>
 </head>
 <body>
@@ -437,5 +455,27 @@
     </div>
   </div>
 </div>
+
+<button id="export-btn">⬇ Export PNG</button>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+  document.getElementById('export-btn').addEventListener('click', function() {
+    const btn = document.getElementById('export-btn');
+    btn.style.display = 'none';
+    html2canvas(document.querySelector('.wrapper'), {
+      backgroundColor: null,
+      scale: 3,
+      useCORS: true,
+      logging: false
+    }).then(function(canvas) {
+      const link = document.createElement('a');
+      link.download = 'veslo-hero-referral.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      btn.style.display = '';
+    });
+  });
+</script>
 </body>
 </html>
