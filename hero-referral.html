@@ -22,8 +22,8 @@
   .wrapper {
     position: relative;
     width: 460px;
-    padding: 44px 36px;
-    background: #EDE8E1;
+    padding: 60px 60px;
+    background: transparent;
     border-radius: 32px;
     display: flex;
     flex-direction: column;
@@ -45,47 +45,40 @@
 
   .line-top {
     position: absolute;
-    top: 24.5px;
-    left: 42px;
-    right: 42px;
-    height: 1.5px;
-    background: #CFC8BE;
-    border-radius: 2px;
+    top: 24.5px; left: 42px; right: 42px;
+    height: 1.5px; background: #CFC8BE; border-radius: 2px;
   }
   .line-bottom {
     position: absolute;
-    bottom: 24.5px;
-    left: 42px;
-    right: 42px;
-    height: 1.5px;
-    background: #CFC8BE;
-    border-radius: 2px;
+    bottom: 24.5px; left: 42px; right: 42px;
+    height: 1.5px; background: #CFC8BE; border-radius: 2px;
   }
   .line-left {
     position: absolute;
-    left: 24.5px;
-    top: 42px;
-    bottom: 42px;
-    width: 1.5px;
-    background: #CFC8BE;
-    border-radius: 2px;
+    left: 24.5px; top: 42px; bottom: 42px;
+    width: 1.5px; background: #CFC8BE; border-radius: 2px;
   }
   .line-right {
     position: absolute;
-    right: 24.5px;
-    top: 42px;
-    bottom: 42px;
-    width: 1.5px;
-    background: #CFC8BE;
-    border-radius: 2px;
+    right: 24.5px; top: 42px; bottom: 42px;
+    width: 1.5px; background: #CFC8BE; border-radius: 2px;
   }
 
-  /* Cards */
+  /* ── Card shell (grey backing layer) ── */
+  .card-shell {
+    background: #E3DDD7;
+    border: 1px solid #D2CBC3;
+    border-radius: 22px;
+    padding: 4px 4px 7px 4px;
+    position: relative;
+  }
+
+  /* ── White card (floats above shell) ── */
   .card {
     background: #FFFFFF;
-    border-radius: 20px;
+    border-radius: 18px;
     padding: 22px 26px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.09), 0 0px 1px rgba(0,0,0,0.05);
     position: relative;
   }
 
@@ -116,7 +109,7 @@
     letter-spacing: 0;
   }
   .avatar:last-child { margin-right: 0; }
-  .av1 { background: #C4B3D6; }
+  .av1 { background: #7EB8C9; }
   .av2 { background: #8BAFC8; }
   .av3 { background: #C8956A; }
 
@@ -169,7 +162,7 @@
   .float-badge {
     position: absolute;
     top: -10px;
-    right: 22px;
+    right: -8px;
     background: #F97316;
     color: white;
     border-radius: 50%;
@@ -181,6 +174,7 @@
     font-size: 14px;
     line-height: 1;
     box-shadow: 0 3px 10px rgba(249,115,22,0.45);
+    z-index: 2;
   }
 
   /* ── Card 2 – Odmeny / chart ── */
@@ -327,20 +321,27 @@
     flex-shrink: 0;
   }
 
-  .btn-lead {
-    background: #1A1A1A;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    padding: 14px 22px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    cursor: pointer;
-    white-space: nowrap;
-    font-family: inherit;
+  .card-3-right {
+    text-align: right;
     flex-shrink: 0;
+  }
+  .next-payout-label {
+    font-size: 11px;
+    color: #B0A89E;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .next-payout-date {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1A1A1A;
+    letter-spacing: -0.5px;
+  }
+  .next-payout-amount {
+    font-size: 13px;
+    font-weight: 700;
+    color: #F97316;
+    margin-top: 2px;
   }
 </style>
 </head>
@@ -357,73 +358,83 @@
   <div class="line-right"></div>
 
   <!-- Card 1: Lead sent -->
-  <div class="card card-1">
-    <div class="float-badge">↗</div>
-    <div class="avatars">
-      <div class="avatar av1">MK</div>
-      <div class="avatar av2">JN</div>
-      <div class="avatar av3">PH</div>
-    </div>
-    <div class="card-1-text">
-      <div class="label">Odoslaný lead</div>
-      <div class="title">Reštaurácia Starý Dvor</div>
-      <div class="sub">pokladňa + terminál</div>
-    </div>
-    <div class="card-1-right">
-      <div class="count">47</div>
-      <div class="count-label">partnerov</div>
+  <div class="card-shell">
+    <div class="card card-1">
+      <div class="float-badge">↗</div>
+      <div class="avatars">
+        <div class="avatar av1">MK</div>
+        <div class="avatar av2">JN</div>
+        <div class="avatar av3">PH</div>
+      </div>
+      <div class="card-1-text">
+        <div class="label">Odoslaný lead</div>
+        <div class="title">Reštaurácia Starý Dvor</div>
+        <div class="sub">pokladňa + terminál</div>
+      </div>
+      <div class="card-1-right">
+        <div class="count">47</div>
+        <div class="count-label">leadov celkom</div>
+      </div>
     </div>
   </div>
 
   <!-- Card 2: Monthly earnings + chart -->
-  <div class="card">
-    <div class="card-2-top">
-      <div>
-        <div class="card-title">Moje odmeny</div>
-        <div class="card-period">Apríl 2025</div>
+  <div class="card-shell">
+    <div class="card">
+      <div class="card-2-top">
+        <div>
+          <div class="card-title">Moje odmeny</div>
+          <div class="card-period">Apríl 2025</div>
+        </div>
+        <div class="payout-pill">
+          <div class="pill-icon">↙</div>
+          +2 nové dealy
+        </div>
       </div>
-      <div class="payout-pill">
-        <div class="pill-icon">↙</div>
-        Vyplatené 320 €
-      </div>
-    </div>
 
-    <div class="card-2-body">
-      <div class="card-2-left">
-        <div class="amount-row">
-          <span class="amount">320 €</span>
-          <span class="growth">↗ +80 €</span>
+      <div class="card-2-body">
+        <div class="card-2-left">
+          <div class="amount-row">
+            <span class="amount">320 €</span>
+            <span class="growth">↗ +80 €</span>
+          </div>
+          <div class="card-2-desc">Odmeny vzrástli<br>tento mesiac o 25 %</div>
         </div>
-        <div class="card-2-desc">Odmeny vzrástli<br>tento mesiac o 25 %</div>
-      </div>
-      <div class="chart-area">
-        <div class="bar-chart">
-          <div class="bar" style="height:36px"></div>
-          <div class="bar" style="height:28px"></div>
-          <div class="bar hi" style="height:60px"></div>
-          <div class="bar" style="height:44px"></div>
-        </div>
-        <div class="bar-labels">
-          <span class="bar-label">Jan</span>
-          <span class="bar-label">Feb</span>
-          <span class="bar-label">Mar</span>
-          <span class="bar-label">Apr</span>
+        <div class="chart-area">
+          <div class="bar-chart">
+            <div class="bar" style="height:36px"></div>
+            <div class="bar" style="height:28px"></div>
+            <div class="bar hi" style="height:60px"></div>
+            <div class="bar" style="height:44px"></div>
+          </div>
+          <div class="bar-labels">
+            <span class="bar-label">Jan</span>
+            <span class="bar-label">Feb</span>
+            <span class="bar-label">Mar</span>
+            <span class="bar-label">Apr</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Card 3: Total + CTA -->
-  <div class="card card-3">
-    <div>
-      <div class="card-3-label">Celkové odmeny</div>
-      <div class="card-3-total">1 240 €</div>
-      <div class="status-pill">
-        <div class="status-dot"></div>
-        Vyplatené
+  <!-- Card 3: Total earnings + next payout -->
+  <div class="card-shell">
+    <div class="card card-3">
+      <div>
+        <div class="card-3-label">Celkové odmeny</div>
+        <div class="card-3-total">1 240 €</div>
+        <div class="status-pill">
+          <div class="status-dot"></div>
+          Vyplatené
+        </div>
+      </div>
+      <div class="card-3-right">
+        <div class="next-payout-label">Ďalšia výplata</div>
+        <div class="next-payout-date">25. máj</div>
+        <div class="next-payout-amount">+ 320 €</div>
       </div>
     </div>
-    <button class="btn-lead">Poslať lead</button>
   </div>
 </div>
 </body>
