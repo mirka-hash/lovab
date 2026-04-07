@@ -5,7 +5,7 @@
 <title>Preview – Ecosystem Embed</title>
 <style>
   body {
-    background: #D4F03D; /* preview only – same as the card background */
+    background: #D4F03D; /* preview only – lime card color */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,103 +18,104 @@
 
 <!-- ============================================================
      WEBFLOW EMBED CODE — copy everything between these comments
-     and paste into a Webflow Embed element.
      ============================================================ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
   .veco-scene {
     position: relative;
-    width: 100%;
-    max-width: 420px;
-    height: 200px;
-    margin: 0 auto;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    width: 400px;
+    height: 180px;
+    font-family: 'Inter', -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
-    overflow: hidden;
   }
 
-  /* ── Floating keyframes – each pill gets its own ── */
+  /* ── Floating keyframes – rotation baked in per pill ── */
   @keyframes veco-f1 {
-    0%, 100% { transform: rotate(-8deg) translateY(0px); }
-    50%       { transform: rotate(-8deg) translateY(-8px); }
+    0%, 100% { transform: rotate(3deg)  translateY(0px); }
+    50%       { transform: rotate(3deg)  translateY(-7px); }
   }
   @keyframes veco-f2 {
-    0%, 100% { transform: rotate(5deg) translateY(0px); }
-    50%       { transform: rotate(5deg) translateY(-10px); }
+    0%, 100% { transform: rotate(-5deg) translateY(0px); }
+    50%       { transform: rotate(-5deg) translateY(-6px); }
   }
   @keyframes veco-f3 {
+    0%, 100% { transform: rotate(6deg)  translateY(0px); }
+    50%       { transform: rotate(6deg)  translateY(-8px); }
+  }
+  @keyframes veco-f4 {
     0%, 100% { transform: rotate(-4deg) translateY(0px); }
     50%       { transform: rotate(-4deg) translateY(-7px); }
   }
-  @keyframes veco-f4 {
-    0%, 100% { transform: rotate(7deg) translateY(0px); }
-    50%       { transform: rotate(7deg) translateY(-9px); }
-  }
   @keyframes veco-pulse {
     0%, 100% { transform: translate(-50%, -50%) scale(1); }
-    50%       { transform: translate(-50%, -50%) scale(1.06); }
+    50%       { transform: translate(-50%, -50%) scale(1.07); }
   }
 
-  /* ── Pill base ── */
+  /* ── Pill ── */
   .veco-pill {
     position: absolute;
     background: #1A1A1A;
     border-radius: 100px;
-    padding: 9px 16px;
+    padding: 7px 13px;
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     white-space: nowrap;
   }
-  .veco-pill-icon {
-    width: 18px;
-    height: 18px;
-    border-radius: 5px;
+  .veco-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
     background: #F97316;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
-  .veco-pill-label {
-    font-size: 12px;
+  .veco-label {
+    font-size: 11px;
     font-weight: 600;
-    color: #ffffff;
+    color: #fff;
     letter-spacing: 0.1px;
   }
 
-  /* ── Individual positions & animations ── */
-  .veco-p1 { left: 10px;  bottom: 30px; animation: veco-f1 4.2s ease-in-out infinite; }
-  .veco-p2 { left: 100px; top: 16px;    animation: veco-f2 3.8s ease-in-out infinite 0.7s; }
-  .veco-p3 { right: 10px; top: 30px;    animation: veco-f3 4.6s ease-in-out infinite 1.3s; }
-  .veco-p4 { right: 30px; bottom: 24px; animation: veco-f4 4.0s ease-in-out infinite 0.4s; }
+  /* Diamond positions — top-left, top-right, bottom-left, bottom-right */
+  .veco-p1 { top: 10px; left: 14px;  animation: veco-f1 4.2s ease-in-out infinite; }
+  .veco-p2 { top: 14px; right: 10px; animation: veco-f2 3.9s ease-in-out infinite 0.8s; }
+  .veco-p3 { bottom: 10px; left: 10px;  animation: veco-f3 4.5s ease-in-out infinite 1.4s; }
+  .veco-p4 { bottom: 14px; right: 14px; animation: veco-f4 4.0s ease-in-out infinite 0.4s; }
 
   /* ── Hub ── */
   .veco-hub-ring {
     position: absolute;
     left: 50%; top: 50%;
     transform: translate(-50%, -50%);
-    width: 54px; height: 54px;
+    width: 58px; height: 58px;
     border-radius: 50%;
-    background: rgba(26,26,26,0.1);
+    background: rgba(255,255,255,0.35);
   }
   .veco-hub {
     position: absolute;
     left: 50%; top: 50%;
-    width: 38px; height: 38px;
+    width: 40px; height: 40px;
     border-radius: 50%;
-    background: #1A1A1A;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2;
     animation: veco-pulse 3.5s ease-in-out infinite;
   }
+  .veco-hub img {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
 
-  /* ── SVG lines layer ── */
+  /* ── Lines ── */
   .veco-lines {
     position: absolute;
     inset: 0;
@@ -125,73 +126,72 @@
 
 <div class="veco-scene">
 
-  <!-- Connection lines — viewBox matches scene 420×200, hub at 210,100 -->
-  <svg class="veco-lines" viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg">
-    <!-- p1: Pokladňa approx left:10 bottom:30 → center ~(90,155) -->
-    <line x1="90"  y1="155" x2="210" y2="100" stroke="#1A1A1A" stroke-width="1.2" stroke-dasharray="4 5" opacity="0.18"/>
-    <!-- p2: Terminál approx left:100 top:16 → center ~(185,38) -->
-    <line x1="185" y1="38"  x2="210" y2="100" stroke="#1A1A1A" stroke-width="1.2" stroke-dasharray="4 5" opacity="0.18"/>
-    <!-- p3: Admin portál approx right:10 top:30 → center ~(350,50) -->
-    <line x1="350" y1="50"  x2="210" y2="100" stroke="#1A1A1A" stroke-width="1.2" stroke-dasharray="4 5" opacity="0.18"/>
-    <!-- p4: Mobilná appka approx right:30 bottom:24 → center ~(330,160) -->
-    <line x1="330" y1="160" x2="210" y2="100" stroke="#1A1A1A" stroke-width="1.2" stroke-dasharray="4 5" opacity="0.18"/>
+  <!-- Lines: viewBox 400×180, hub center at (200, 90) -->
+  <!-- Pill approximate centers:
+       p1 top-left:  left:14 top:10  → pill ~110px × 32px → center (69, 26)
+       p2 top-right: right:10 top:14 → pill ~130px × 32px → center (335, 30)
+       p3 bot-left:  left:10 bot:10  → center (65, 154)
+       p4 bot-right: right:14 bot:14 → center (326, 150) -->
+  <svg class="veco-lines" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+    <line x1="69"  y1="26"  x2="200" y2="90" stroke="#1A1A1A" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.38"/>
+    <line x1="335" y1="30"  x2="200" y2="90" stroke="#1A1A1A" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.38"/>
+    <line x1="65"  y1="154" x2="200" y2="90" stroke="#1A1A1A" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.38"/>
+    <line x1="326" y1="150" x2="200" y2="90" stroke="#1A1A1A" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.38"/>
   </svg>
 
-  <!-- Hub -->
+  <!-- Hub: white circle + Veslo logo -->
   <div class="veco-hub-ring"></div>
   <div class="veco-hub">
-    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-      <path d="M4 4L10 16L16 4" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+    <img src="https://cdn.prod.website-files.com/69316ed57fdda6d978f4a479/69a365e040d2f63032000a00_veslo%20icon.svg" alt="Veslo">
   </div>
 
-  <!-- Pill 1: Pokladňa -->
+  <!-- Pill 1 – top-left: Terminál -->
   <div class="veco-pill veco-p1">
-    <div class="veco-pill-icon">
-      <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
-        <rect x="1" y="5" width="12" height="8" rx="1.5" stroke="white" stroke-width="1.5"/>
-        <path d="M4 5V3.5C4 2.67 4.67 2 5.5 2h3C9.33 2 10 2.67 10 3.5V5" stroke="white" stroke-width="1.5"/>
+    <div class="veco-icon">
+      <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="3" width="12" height="8" rx="1.5" stroke="white" stroke-width="1.6"/>
+        <path d="M1 6h12" stroke="white" stroke-width="1.6"/>
+        <rect x="3" y="8" width="3" height="1.5" rx="0.4" fill="white"/>
+      </svg>
+    </div>
+    <span class="veco-label">Terminál</span>
+  </div>
+
+  <!-- Pill 2 – top-right: Admin portál -->
+  <div class="veco-pill veco-p2">
+    <div class="veco-icon">
+      <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="1" width="5" height="5" rx="1" fill="white"/>
+        <rect x="8" y="1" width="5" height="5" rx="1" fill="white" opacity="0.65"/>
+        <rect x="1" y="8" width="5" height="5" rx="1" fill="white" opacity="0.65"/>
+        <rect x="8" y="8" width="5" height="5" rx="1" fill="white" opacity="0.4"/>
+      </svg>
+    </div>
+    <span class="veco-label">Admin portál</span>
+  </div>
+
+  <!-- Pill 3 – bottom-left: Pokladňa -->
+  <div class="veco-pill veco-p3">
+    <div class="veco-icon">
+      <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+        <rect x="1" y="5" width="12" height="8" rx="1.5" stroke="white" stroke-width="1.6"/>
+        <path d="M4 5V3.5C4 2.67 4.67 2 5.5 2h3C9.33 2 10 2.67 10 3.5V5" stroke="white" stroke-width="1.6"/>
         <rect x="4" y="8" width="2" height="2" rx="0.5" fill="white"/>
         <rect x="7" y="8" width="2" height="2" rx="0.5" fill="white"/>
       </svg>
     </div>
-    <span class="veco-pill-label">Pokladňa</span>
+    <span class="veco-label">Pokladňa</span>
   </div>
 
-  <!-- Pill 2: Terminál -->
-  <div class="veco-pill veco-p2">
-    <div class="veco-pill-icon">
-      <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
-        <rect x="1" y="3" width="12" height="8" rx="1.5" stroke="white" stroke-width="1.5"/>
-        <path d="M1 6h12" stroke="white" stroke-width="1.5"/>
-        <rect x="3" y="8" width="3" height="1.5" rx="0.4" fill="white"/>
-      </svg>
-    </div>
-    <span class="veco-pill-label">Terminál</span>
-  </div>
-
-  <!-- Pill 3: Admin portál -->
-  <div class="veco-pill veco-p3">
-    <div class="veco-pill-icon">
-      <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
-        <rect x="1" y="1" width="5" height="5" rx="1" fill="white"/>
-        <rect x="8" y="1" width="5" height="5" rx="1" fill="white" opacity="0.7"/>
-        <rect x="1" y="8" width="5" height="5" rx="1" fill="white" opacity="0.7"/>
-        <rect x="8" y="8" width="5" height="5" rx="1" fill="white" opacity="0.5"/>
-      </svg>
-    </div>
-    <span class="veco-pill-label">Admin portál</span>
-  </div>
-
-  <!-- Pill 4: Mobilná appka -->
+  <!-- Pill 4 – bottom-right: Mobilná appka -->
   <div class="veco-pill veco-p4">
-    <div class="veco-pill-icon">
-      <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
-        <rect x="3" y="1" width="8" height="12" rx="2" stroke="white" stroke-width="1.5"/>
+    <div class="veco-icon">
+      <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+        <rect x="3" y="1" width="8" height="12" rx="2" stroke="white" stroke-width="1.6"/>
         <circle cx="7" cy="11" r="0.8" fill="white"/>
       </svg>
     </div>
-    <span class="veco-pill-label">Mobilná appka</span>
+    <span class="veco-label">Mobilná appka</span>
   </div>
 
 </div>
