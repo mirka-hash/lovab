@@ -108,12 +108,45 @@
     width: 34px;
     height: 34px;
     background: #F97316;
-    box-shadow: 0 3px 12px rgba(249,115,22,0.35);
-    margin-top: -4px; /* visually center with the track */
+    margin-top: -4px;
   }
 
-  .step-circle svg {
-    display: block;
+  /* Glow ring — real DOM element, no box-shadow */
+  .glow-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: -4px;
+  }
+  .glow-ring {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(249, 115, 22, 0.18);
+  }
+  .glow-wrap .step-circle.active {
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+  }
+
+  /* CSS checkmark — more reliable than SVG in html2canvas */
+  .check {
+    display: inline-block;
+    width: 5px;
+    height: 9px;
+    border-right: 1.8px solid #B0A89E;
+    border-bottom: 1.8px solid #B0A89E;
+    transform: rotate(45deg) translateY(-2px);
+  }
+  .check.white {
+    width: 6px;
+    height: 11px;
+    border-right: 2.2px solid #ffffff;
+    border-bottom: 2.2px solid #ffffff;
   }
 
   .step-label {
@@ -221,54 +254,37 @@
 
       <!-- Step 1: Lead -->
       <div class="step">
-        <div class="step-circle">
-          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
-            <path d="M1.5 4.5L4 7L9.5 1.5" stroke="#B0A89E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <div class="step-circle"><div class="check"></div></div>
         <div class="step-label">Lead</div>
         <div class="step-day">Deň 1</div>
       </div>
 
       <!-- Step 2: Hovor -->
       <div class="step">
-        <div class="step-circle">
-          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
-            <path d="M1.5 4.5L4 7L9.5 1.5" stroke="#B0A89E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <div class="step-circle"><div class="check"></div></div>
         <div class="step-label">Hovor</div>
         <div class="step-day">Deň 2</div>
       </div>
 
       <!-- Step 3: Zmluva -->
       <div class="step">
-        <div class="step-circle">
-          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
-            <path d="M1.5 4.5L4 7L9.5 1.5" stroke="#B0A89E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <div class="step-circle"><div class="check"></div></div>
         <div class="step-label">Zmluva</div>
         <div class="step-day">Deň 4</div>
       </div>
 
       <!-- Step 4: Inštalácia -->
       <div class="step">
-        <div class="step-circle">
-          <svg width="11" height="9" viewBox="0 0 11 9" fill="none">
-            <path d="M1.5 4.5L4 7L9.5 1.5" stroke="#B0A89E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <div class="step-circle"><div class="check"></div></div>
         <div class="step-label">Inštalácia</div>
         <div class="step-day">Deň 6</div>
       </div>
 
       <!-- Step 5: Aktívna -->
       <div class="step">
-        <div class="step-circle active">
-          <svg width="14" height="11" viewBox="0 0 14 11" fill="none">
-            <path d="M1.5 5.5L5 9L12.5 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+        <div class="glow-wrap">
+          <div class="glow-ring"></div>
+          <div class="step-circle active"><div class="check white"></div></div>
         </div>
         <div class="step-label" style="color:#F97316;">Aktívna</div>
         <div class="step-day">Deň 7</div>
