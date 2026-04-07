@@ -32,22 +32,22 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── Floating keyframes – rotation baked in per pill ── */
+  /* ── Floating keyframes – varied rotation + Y for organic feel ── */
   @keyframes veco-f1 {
-    0%, 100% { transform: rotate(3deg)  translateY(0px); }
-    50%       { transform: rotate(3deg)  translateY(-7px); }
+    0%, 100% { transform: rotate(-9deg)  translateY(0px); }
+    50%       { transform: rotate(-7deg)  translateY(-8px); }
   }
   @keyframes veco-f2 {
-    0%, 100% { transform: rotate(-5deg) translateY(0px); }
-    50%       { transform: rotate(-5deg) translateY(-6px); }
+    0%, 100% { transform: rotate(4deg)  translateY(0px); }
+    50%       { transform: rotate(6deg)  translateY(-7px); }
   }
   @keyframes veco-f3 {
-    0%, 100% { transform: rotate(6deg)  translateY(0px); }
-    50%       { transform: rotate(6deg)  translateY(-8px); }
+    0%, 100% { transform: rotate(8deg)   translateY(0px); }
+    50%       { transform: rotate(6deg)   translateY(-9px); }
   }
   @keyframes veco-f4 {
-    0%, 100% { transform: rotate(-4deg) translateY(0px); }
-    50%       { transform: rotate(-4deg) translateY(-7px); }
+    0%, 100% { transform: rotate(-5deg)  translateY(0px); }
+    50%       { transform: rotate(-7deg)  translateY(-6px); }
   }
   @keyframes veco-pulse {
     0%, 100% { transform: translate(-50%, -50%) scale(1); }
@@ -82,11 +82,11 @@
     letter-spacing: 0.1px;
   }
 
-  /* Diamond positions — top-left, top-right, bottom-left, bottom-right */
-  .veco-p1 { top: 10px; left: 14px;  animation: veco-f1 4.2s ease-in-out infinite; }
-  .veco-p2 { top: 14px; right: 10px; animation: veco-f2 3.9s ease-in-out infinite 0.8s; }
-  .veco-p3 { bottom: 10px; left: 10px;  animation: veco-f3 4.5s ease-in-out infinite 1.4s; }
-  .veco-p4 { bottom: 14px; right: 14px; animation: veco-f4 4.0s ease-in-out infinite 0.4s; }
+  /* Organic scattered positions — deliberately asymmetric */
+  .veco-p1 { top: 8px;    left: 28px;  animation: veco-f1 4.2s ease-in-out infinite; }
+  .veco-p2 { top: 28px;   right: 4px;  animation: veco-f2 3.9s ease-in-out infinite 0.8s; }
+  .veco-p3 { bottom: 8px; left: 6px;   animation: veco-f3 4.5s ease-in-out infinite 1.4s; }
+  .veco-p4 { bottom: 28px; right: 22px; animation: veco-f4 4.0s ease-in-out infinite 0.4s; }
 
   /* ── Hub ── */
   .veco-hub-ring {
@@ -127,17 +127,16 @@
 
 <div class="veco-scene">
 
-  <!-- Lines: viewBox 400×180, hub center at (200, 90) -->
-  <!-- Pill approximate centers:
-       p1 top-left:  left:14 top:10  → pill ~110px × 32px → center (69, 26)
-       p2 top-right: right:10 top:14 → pill ~130px × 32px → center (335, 30)
-       p3 bot-left:  left:10 bot:10  → center (65, 154)
-       p4 bot-right: right:14 bot:14 → center (326, 150) -->
+  <!-- Lines: viewBox 400×180, hub center at (200, 90)
+       p1: left:28 top:8    → pill ~110×30 → center (83, 23)
+       p2: right:4 top:28   → pill ~130×30 → center (334, 43)
+       p3: left:6  bot:8    → pill ~110×30 → center (61, 157)
+       p4: right:22 bot:28  → pill ~140×30 → center (309, 137) -->
   <svg class="veco-lines" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-    <line x1="69"  y1="26"  x2="200" y2="90" stroke="#1A1A1A" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.38"/>
-    <line x1="335" y1="30"  x2="200" y2="90" stroke="#1A1A1A" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.38"/>
-    <line x1="65"  y1="154" x2="200" y2="90" stroke="#1A1A1A" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.38"/>
-    <line x1="326" y1="150" x2="200" y2="90" stroke="#1A1A1A" stroke-width="1.4" stroke-dasharray="5 4" opacity="0.38"/>
+    <line x1="83"  y1="23"  x2="200" y2="90" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
+    <line x1="334" y1="43"  x2="200" y2="90" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
+    <line x1="61"  y1="157" x2="200" y2="90" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
+    <line x1="309" y1="137" x2="200" y2="90" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
   </svg>
 
   <!-- Hub: white circle + Veslo logo -->
