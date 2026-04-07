@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Veslo – Hero Referral Image</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -13,325 +15,338 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 
   .wrapper {
     position: relative;
-    width: 420px;
-    padding: 32px 28px;
-    background: #F5F0EB;
-    border-radius: 28px;
+    width: 460px;
+    padding: 44px 36px;
+    background: #EDE8E1;
+    border-radius: 32px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
   }
 
   /* Corner decorations */
   .dot {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
     background: #F97316;
   }
-  .dot.tl { top: 18px; left: 18px; }
-  .dot.tr { top: 18px; right: 18px; }
-  .dot.bl { bottom: 18px; left: 18px; }
-  .dot.br { bottom: 18px; right: 18px; }
+  .dot.tl { top: 20px; left: 20px; }
+  .dot.tr { top: 20px; right: 20px; }
+  .dot.bl { bottom: 20px; left: 20px; }
+  .dot.br { bottom: 20px; right: 20px; }
 
   .line-top {
     position: absolute;
-    top: 23px;
+    top: 24.5px;
     left: 42px;
     right: 42px;
-    height: 2px;
-    background: #D9CFC6;
+    height: 1.5px;
+    background: #CFC8BE;
     border-radius: 2px;
   }
   .line-bottom {
     position: absolute;
-    bottom: 23px;
+    bottom: 24.5px;
     left: 42px;
     right: 42px;
-    height: 2px;
-    background: #D9CFC6;
+    height: 1.5px;
+    background: #CFC8BE;
     border-radius: 2px;
   }
   .line-left {
     position: absolute;
-    left: 23px;
+    left: 24.5px;
     top: 42px;
     bottom: 42px;
-    width: 2px;
-    background: #D9CFC6;
+    width: 1.5px;
+    background: #CFC8BE;
     border-radius: 2px;
   }
   .line-right {
     position: absolute;
-    right: 23px;
+    right: 24.5px;
     top: 42px;
     bottom: 42px;
-    width: 2px;
-    background: #D9CFC6;
+    width: 1.5px;
+    background: #CFC8BE;
     border-radius: 2px;
   }
 
   /* Cards */
   .card {
     background: #FFFFFF;
-    border-radius: 18px;
-    padding: 20px 22px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    border-radius: 20px;
+    padding: 22px 26px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.05);
     position: relative;
   }
 
-  /* Card 1 – Lead odoslaný */
+  /* ── Card 1 – Lead odoslaný ── */
   .card-1 {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
   }
 
   .avatars {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
   }
   .avatar {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: 2.5px solid #fff;
-    margin-right: -10px;
-    overflow: hidden;
-    background: #E8DDD5;
+    margin-right: -9px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0;
   }
   .avatar:last-child { margin-right: 0; }
-  .avatar-1 { background: #C9B8D8; }
-  .avatar-2 { background: #9FBFD4; }
-  .avatar-3 { background: #D4A574; }
+  .av1 { background: #C4B3D6; }
+  .av2 { background: #8BAFC8; }
+  .av3 { background: #C8956A; }
 
   .card-1-text {
     flex: 1;
+    min-width: 0;
   }
   .card-1-text .label {
-    font-size: 13px;
-    color: #888;
+    font-size: 11.5px;
+    color: #B0A89E;
     font-weight: 500;
-    margin-bottom: 2px;
+    letter-spacing: 0.2px;
+    margin-bottom: 3px;
   }
   .card-1-text .title {
     font-size: 14px;
     font-weight: 600;
     color: #1A1A1A;
-    line-height: 1.3;
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-1-text .sub {
+    font-size: 12px;
+    color: #B0A89E;
+    font-weight: 400;
+    margin-top: 1px;
   }
 
-  .card-1-count {
-    font-size: 28px;
+  .card-1-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .card-1-right .count {
+    font-size: 30px;
     font-weight: 800;
     color: #F97316;
-    white-space: nowrap;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .card-1-right .count-label {
+    font-size: 11px;
+    color: #B0A89E;
+    font-weight: 500;
+    margin-top: 2px;
   }
 
-  /* Send arrow badge */
-  .send-badge {
+  /* Floating badge */
+  .float-badge {
     position: absolute;
-    top: -8px;
-    right: 16px;
+    top: -10px;
+    right: 22px;
     background: #F97316;
     color: white;
     border-radius: 50%;
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    box-shadow: 0 2px 8px rgba(249,115,22,0.4);
+    font-size: 14px;
+    line-height: 1;
+    box-shadow: 0 3px 10px rgba(249,115,22,0.45);
   }
 
-  /* Card 2 – Odmena */
-  .card-2-header {
+  /* ── Card 2 – Odmeny / chart ── */
+  .card-2-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 4px;
+    margin-bottom: 18px;
   }
-  .card-2-header .card-title {
+  .card-2-top .card-title {
     font-size: 15px;
     font-weight: 700;
     color: #1A1A1A;
+    margin-bottom: 2px;
   }
-  .money-in-badge {
+  .card-2-top .card-period {
+    font-size: 12px;
+    color: #B0A89E;
+    font-weight: 400;
+  }
+
+  .payout-pill {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
     background: #FEF3E8;
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-size: 11px;
+    border-radius: 24px;
+    padding: 5px 12px 5px 6px;
+    font-size: 12px;
     color: #F97316;
     font-weight: 600;
+    white-space: nowrap;
   }
-  .money-in-badge .arrow-icon {
-    width: 16px;
-    height: 16px;
+  .payout-pill .pill-icon {
+    width: 20px;
+    height: 20px;
     background: #F97316;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 9px;
-  }
-
-  .card-2-sub {
-    font-size: 12px;
-    color: #AAA;
-    margin-bottom: 12px;
+    font-size: 10px;
+    line-height: 1;
+    flex-shrink: 0;
   }
 
   .card-2-body {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+    gap: 12px;
   }
 
-  .main-amount {
+  .card-2-left { flex: 1; }
+  .amount-row {
     display: flex;
     align-items: baseline;
     gap: 8px;
+    margin-bottom: 6px;
   }
-  .main-amount .amount {
-    font-size: 32px;
+  .amount-row .amount {
+    font-size: 36px;
     font-weight: 800;
     color: #1A1A1A;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
+    line-height: 1;
   }
-  .main-amount .growth {
-    font-size: 14px;
+  .amount-row .growth {
+    font-size: 13px;
     font-weight: 700;
     color: #F97316;
-    display: flex;
-    align-items: center;
-    gap: 2px;
+  }
+  .card-2-desc {
+    font-size: 12px;
+    color: #B0A89E;
+    line-height: 1.5;
+    font-weight: 400;
   }
 
+  .chart-area { flex-shrink: 0; }
   .bar-chart {
     display: flex;
     align-items: flex-end;
-    gap: 8px;
-    height: 60px;
+    gap: 7px;
+    height: 64px;
   }
   .bar {
-    width: 22px;
-    border-radius: 5px 5px 0 0;
-    background: #E8DFF8;
+    width: 24px;
+    border-radius: 6px 6px 0 0;
+    background: #EDE8F7;
   }
-  .bar.highlight {
-    background: #F97316;
-  }
+  .bar.hi { background: #F97316; }
   .bar-labels {
     display: flex;
-    gap: 8px;
-    margin-top: 4px;
+    gap: 7px;
+    margin-top: 5px;
   }
   .bar-label {
-    width: 22px;
+    width: 24px;
     text-align: center;
     font-size: 10px;
-    color: #BBB;
+    color: #C8C0B8;
     font-weight: 500;
   }
 
-  .card-2-desc {
-    font-size: 12px;
-    color: #888;
-    margin-top: 8px;
-    line-height: 1.4;
-  }
-
-  .progress-dots {
-    display: flex;
-    gap: 6px;
-    margin-top: 12px;
-  }
-  .progress-dot {
-    height: 3px;
-    border-radius: 3px;
-    background: #E0D8D0;
-  }
-  .progress-dot.active {
-    background: #F97316;
-    width: 32px;
-  }
-  .progress-dot:not(.active) {
-    width: 18px;
-  }
-
-  /* Card 3 – Celkové odmeny */
+  /* ── Card 3 – Celkové odmeny ── */
   .card-3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
   }
-  .card-3-left .card-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #888;
-    margin-bottom: 4px;
+  .card-3-label {
+    font-size: 12.5px;
+    color: #B0A89E;
+    font-weight: 500;
+    margin-bottom: 5px;
   }
-  .card-3-left .total {
-    font-size: 26px;
+  .card-3-total {
+    font-size: 28px;
     font-weight: 800;
     color: #1A1A1A;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 8px;
   }
-  .card-3-left .status {
+  .status-pill {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    margin-top: 6px;
     font-size: 12px;
     font-weight: 600;
-    color: #22C55E;
+    color: #16A34A;
     background: #F0FDF4;
-    padding: 3px 9px;
-    border-radius: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
   }
-  .card-3-left .status::before {
-    content: '';
-    width: 7px;
-    height: 7px;
+  .status-dot {
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: #22C55E;
-    display: inline-block;
+    flex-shrink: 0;
   }
 
-  .btn-vyplatit {
+  .btn-lead {
     background: #1A1A1A;
     color: #fff;
     border: none;
-    border-radius: 10px;
-    padding: 12px 18px;
+    border-radius: 12px;
+    padding: 14px 22px;
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
     text-transform: uppercase;
     cursor: pointer;
     white-space: nowrap;
+    font-family: inherit;
+    flex-shrink: 0;
   }
 </style>
 </head>
 <body>
 <div class="wrapper">
-  <!-- Corner dots -->
+  <!-- Corner dots & lines -->
   <div class="dot tl"></div>
   <div class="dot tr"></div>
   <div class="dot bl"></div>
@@ -341,45 +356,52 @@
   <div class="line-left"></div>
   <div class="line-right"></div>
 
-  <!-- Card 1: Leads sent / partners -->
+  <!-- Card 1: Lead sent -->
   <div class="card card-1">
-    <div class="send-badge">↗</div>
+    <div class="float-badge">↗</div>
     <div class="avatars">
-      <div class="avatar avatar-1">👩</div>
-      <div class="avatar avatar-2">👨</div>
-      <div class="avatar avatar-3">🧑</div>
+      <div class="avatar av1">MK</div>
+      <div class="avatar av2">JN</div>
+      <div class="avatar av3">PH</div>
     </div>
     <div class="card-1-text">
       <div class="label">Odoslaný lead</div>
-      <div class="title">Reštaurácia Starý Dvor<br>pokladňa + terminál</div>
+      <div class="title">Reštaurácia Starý Dvor</div>
+      <div class="sub">pokladňa + terminál</div>
     </div>
-    <div class="card-1-count">47</div>
+    <div class="card-1-right">
+      <div class="count">47</div>
+      <div class="count-label">partnerov</div>
+    </div>
   </div>
 
-  <!-- Card 2: Earnings chart -->
+  <!-- Card 2: Monthly earnings + chart -->
   <div class="card">
-    <div class="card-2-header">
-      <span class="card-title">Moje odmeny</span>
-      <div class="money-in-badge">
-        <div class="arrow-icon">↙</div>
+    <div class="card-2-top">
+      <div>
+        <div class="card-title">Moje odmeny</div>
+        <div class="card-period">Apríl 2025</div>
+      </div>
+      <div class="payout-pill">
+        <div class="pill-icon">↙</div>
         Vyplatené 320 €
       </div>
     </div>
-    <div class="card-2-sub">Apríl 2025</div>
+
     <div class="card-2-body">
-      <div>
-        <div class="main-amount">
+      <div class="card-2-left">
+        <div class="amount-row">
           <span class="amount">320 €</span>
           <span class="growth">↗ +80 €</span>
         </div>
-        <div class="card-2-desc">Tvoje odmeny vzrástli<br>tento mesiac o 25 %</div>
+        <div class="card-2-desc">Odmeny vzrástli<br>tento mesiac o 25 %</div>
       </div>
-      <div>
+      <div class="chart-area">
         <div class="bar-chart">
-          <div class="bar" style="height: 35px;"></div>
-          <div class="bar" style="height: 28px;"></div>
-          <div class="bar highlight" style="height: 55px;"></div>
-          <div class="bar" style="height: 42px;"></div>
+          <div class="bar" style="height:36px"></div>
+          <div class="bar" style="height:28px"></div>
+          <div class="bar hi" style="height:60px"></div>
+          <div class="bar" style="height:44px"></div>
         </div>
         <div class="bar-labels">
           <span class="bar-label">Jan</span>
@@ -389,21 +411,19 @@
         </div>
       </div>
     </div>
-    <div class="progress-dots">
-      <div class="progress-dot active"></div>
-      <div class="progress-dot"></div>
-      <div class="progress-dot"></div>
-    </div>
   </div>
 
-  <!-- Card 3: Total revenue -->
+  <!-- Card 3: Total + CTA -->
   <div class="card card-3">
-    <div class="card-3-left">
-      <div class="card-title">Celkové odmeny</div>
-      <div class="total">1 240 €</div>
-      <div class="status">Vyplatené</div>
+    <div>
+      <div class="card-3-label">Celkové odmeny</div>
+      <div class="card-3-total">1 240 €</div>
+      <div class="status-pill">
+        <div class="status-dot"></div>
+        Vyplatené
+      </div>
     </div>
-    <button class="btn-vyplatit">Poslať lead</button>
+    <button class="btn-lead">Poslať lead</button>
   </div>
 </div>
 </body>
