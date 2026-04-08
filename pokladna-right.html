@@ -2,337 +2,198 @@
 <html lang="sk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pokladňa – Uzávierka</title>
+<title>Pokladňa – Pravý obrázok</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     min-height: 100vh;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-
   .card {
-    width: 300px;
-    background: #FFFFFF;
-    border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-    overflow: hidden;
+    background: #fff;
+    border-radius: 22px;
+    padding: 20px;
+    width: 290px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07), 0 8px 32px rgba(0,0,0,0.07);
   }
+  .card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .card-title { font-size: 15px; font-weight: 700; color: #111; }
+  .legend { display: flex; gap: 10px; }
+  .leg { display: flex; align-items: center; gap: 4px; font-size: 10px; color: #666; font-weight: 500; }
+  .leg-dot { width: 7px; height: 7px; border-radius: 50%; }
 
-  /* HEADER */
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 20px 14px;
-  }
-  .header-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: #1A1A1A;
-  }
-  .icon-btn {
-    width: 32px;
-    height: 32px;
-    background: #F5F5F5;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 15px;
-    color: #666;
-    flex-shrink: 0;
-    font-weight: 400;
-  }
-
-  .divider {
-    height: 1px;
-    background: #F0EDE9;
-    margin: 0;
-  }
-
-  /* INFO GRID */
-  .info-grid {
-    padding: 12px 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px 16px;
-  }
-  .info-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .info-cell.full {
-    grid-column: 1 / -1;
-  }
-  .info-label {
-    font-size: 10px;
-    font-weight: 700;
-    color: #1A1A1A;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-  }
-  .info-value {
-    font-size: 11.5px;
-    color: #666;
-    font-weight: 400;
-    line-height: 1.4;
-  }
-
-  /* TAB SWITCHER */
-  .tab-switcher {
-    margin: 10px 14px;
-    background: #F5F5F5;
-    border-radius: 12px;
-    padding: 4px;
-    display: flex;
-    gap: 2px;
+  /* Tab switcher */
+  .tabs {
+    display: flex; background: #F0EDE9; border-radius: 10px; padding: 3px; margin-bottom: 14px;
   }
   .tab {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 4px;
-    border-radius: 9px;
-    font-size: 11.5px;
-    font-weight: 600;
-    color: #999;
-    cursor: pointer;
-    text-align: center;
-    white-space: nowrap;
+    flex: 1; text-align: center; padding: 5px 0;
+    font-size: 11px; font-weight: 600; color: #999; border-radius: 8px;
   }
-  .tab.active {
-    background: #FFFFFF;
-    color: #1A1A1A;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.10);
-  }
+  .tab.active { background: #fff; color: #111; }
 
-  /* PAYMENT TABLE */
-  .payment-table {
-    padding: 0 20px;
+  /* Table grid */
+  .table-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+  .table-tile {
+    border-radius: 11px;
+    padding: 10px 10px 9px;
+    position: relative;
+    overflow: hidden;
   }
-  .table-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 6px 0 8px;
-  }
-  .table-header-left {
-    font-size: 11px;
-    color: #AAA;
-    font-weight: 500;
-  }
-  .table-header-right {
-    font-size: 11px;
-    color: #AAA;
-    font-weight: 500;
-  }
+  .tile-free { background: #EDFAF3; }
+  .tile-busy { background: #FFF4E6; }
+  .tile-reserved { background: #E8F8FF; }
 
-  .payment-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 9px 0;
-    border-bottom: 1px solid #F5F5F5;
+  .tile-bar {
+    height: 3px; border-radius: 3px; margin-bottom: 7px;
   }
-  .payment-name {
-    font-size: 12.5px;
-    font-weight: 500;
-    color: #1A1A1A;
-  }
-  .payment-amount {
-    font-size: 12.5px;
-    font-weight: 500;
-    color: #1A1A1A;
-    white-space: nowrap;
-  }
+  .bar-green { background: #22C55E; }
+  .bar-orange { background: #F97316; }
+  .bar-blue { background: #06B6D4; }
 
-  .total-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0 4px;
+  .tile-num { font-size: 17px; font-weight: 800; color: #111; line-height: 1; margin-bottom: 2px; }
+  .tile-label { font-size: 9px; font-weight: 500; }
+  .label-free { color: #16A34A; }
+  .label-busy { color: #888; }
+  .label-reserved { color: #0891B2; }
+  .tile-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 5px;
   }
-  .total-label {
-    font-size: 13px;
-    font-weight: 700;
-    color: #1A1A1A;
-  }
-  .total-amount {
-    font-size: 13px;
-    font-weight: 700;
-    color: #1A1A1A;
-  }
-
-  /* BOTTOM BUTTONS */
-  .bottom-buttons {
-    display: flex;
-    gap: 10px;
-    padding: 14px 20px 18px;
-  }
-  .btn-save {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    background: #F5F5F5;
-    border-radius: 10px;
-    padding: 10px 12px;
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #444;
-    cursor: pointer;
-  }
-  .btn-print {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    background: #F97316;
-    border-radius: 10px;
-    padding: 10px 12px;
-    font-size: 12.5px;
-    font-weight: 700;
-    color: #fff;
-    cursor: pointer;
-  }
+  .tile-amount { font-size: 9px; color: #888; }
+  .tile-time { font-size: 9px; font-weight: 700; }
+  .time-normal { color: #888; }
+  .time-warn { color: #F97316; }
 
   #export-btn {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: #1A1A1A;
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 20px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    z-index: 9999;
+    position: fixed; bottom: 24px; right: 24px;
+    background: #1A1A1A; color: #fff; border: none;
+    border-radius: 10px; padding: 12px 20px;
+    font-size: 13px; font-weight: 600; font-family: inherit; cursor: pointer; z-index: 9999;
   }
 </style>
 </head>
 <body>
+<div class="card" id="card">
 
-<div class="card">
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-title">Uzávierka č. 1</div>
-    <div class="icon-btn">×</div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- INFO GRID -->
-  <div class="info-grid">
-    <div class="info-cell">
-      <div class="info-label">Typ uzávierky</div>
-      <div class="info-value">Intervalová</div>
-    </div>
-    <div class="info-cell">
-      <div class="info-label">Filtrovať podľa</div>
-      <div class="info-value">Lokalita</div>
-    </div>
-    <div class="info-cell">
-      <div class="info-label">Dátum a čas vytvorenia</div>
-      <div class="info-value">24/09/2024 - 01:12 am</div>
-    </div>
-    <div class="info-cell">
-      <div class="info-label">Autor</div>
-      <div class="info-value">John Cashier</div>
-    </div>
-    <div class="info-cell full">
-      <div class="info-label">Lokalita</div>
-      <div class="info-value">Sushi Time Apollo, Prievozska 10/A, 821 06 Bratislava</div>
+  <div class="card-header">
+    <span class="card-title">Mapa stolov</span>
+    <div class="legend">
+      <div class="leg"><div class="leg-dot" style="background:#22C55E"></div>Voľný (3)</div>
+      <div class="leg"><div class="leg-dot" style="background:#F97316"></div>Obsadený (5)</div>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <!-- TAB SWITCHER -->
-  <div class="tab-switcher">
-    <div class="tab">Položky</div>
-    <div class="tab active">Platby</div>
-    <div class="tab">Operácie</div>
-    <div class="tab">DPH</div>
+  <div class="tabs">
+    <div class="tab">Bar</div>
+    <div class="tab">Reštaurácia</div>
+    <div class="tab active">Balkón</div>
   </div>
 
-  <!-- PAYMENT TABLE -->
-  <div class="payment-table">
-    <div class="table-header">
-      <span class="table-header-left">Typ platby (6)</span>
-      <span class="table-header-right">Zaplatené</span>
+  <div class="table-grid">
+    <!-- Stôl 1 – free -->
+    <div class="table-tile tile-free">
+      <div class="tile-bar bar-green"></div>
+      <div class="tile-num">1</div>
+      <div class="tile-label label-free">Voľný</div>
     </div>
-
-    <div class="payment-row">
-      <div class="payment-name">Hotovosť do pokladne</div>
-      <div class="payment-amount">9,00 €</div>
+    <!-- Stôl 2 – busy -->
+    <div class="table-tile tile-busy">
+      <div class="tile-bar bar-orange"></div>
+      <div class="tile-num">2</div>
+      <div class="tile-label label-busy">2 účty</div>
+      <div class="tile-meta">
+        <span class="tile-amount">1 250 Kč</span>
+        <span class="tile-time time-normal">25 min</span>
+      </div>
     </div>
-    <div class="payment-row">
-      <div class="payment-name">Hotovosť u kuriéra</div>
-      <div class="payment-amount">51,00 €</div>
+    <!-- Stôl 3 – busy -->
+    <div class="table-tile tile-busy">
+      <div class="tile-bar bar-orange"></div>
+      <div class="tile-num">3</div>
+      <div class="tile-label label-busy">1 účet</div>
+      <div class="tile-meta">
+        <span class="tile-amount">1 250 Kč</span>
+        <span class="tile-time time-normal">15 min</span>
+      </div>
     </div>
-    <div class="payment-row">
-      <div class="payment-name">Kartou pri pokladni</div>
-      <div class="payment-amount">900,00 €</div>
+    <!-- Stôl 4 – busy + warn -->
+    <div class="table-tile tile-busy">
+      <div class="tile-bar bar-orange"></div>
+      <div class="tile-num">4</div>
+      <div class="tile-label label-busy">3 účty</div>
+      <div class="tile-meta">
+        <span class="tile-amount">1 250 Kč</span>
+        <span class="tile-time time-warn">+2 h</span>
+      </div>
     </div>
-    <div class="payment-row">
-      <div class="payment-name">Querko</div>
-      <div class="payment-amount">140,00 €</div>
+    <!-- Stôl 5 – free -->
+    <div class="table-tile tile-free">
+      <div class="tile-bar bar-green"></div>
+      <div class="tile-num">5</div>
+      <div class="tile-label label-free">Voľný</div>
     </div>
-    <div class="payment-row">
-      <div class="payment-name">Stripe</div>
-      <div class="payment-amount">140,00 €</div>
+    <!-- Stôl 6 – busy + warn -->
+    <div class="table-tile tile-busy">
+      <div class="tile-bar bar-orange"></div>
+      <div class="tile-num">6</div>
+      <div class="tile-label label-busy">2 účty</div>
+      <div class="tile-meta">
+        <span class="tile-amount">1 250 Kč</span>
+        <span class="tile-time time-warn">75 min</span>
+      </div>
     </div>
-    <div class="payment-row">
-      <div class="payment-name">Stravenky</div>
-      <div class="payment-amount">9,90 €</div>
+    <!-- Stôl 7 – free -->
+    <div class="table-tile tile-free">
+      <div class="tile-bar bar-green"></div>
+      <div class="tile-num">7</div>
+      <div class="tile-label label-free">Voľný</div>
     </div>
-
-    <div class="total-row">
-      <div class="total-label">Celkom</div>
-      <div class="total-amount">1 231,00 €</div>
+    <!-- Stôl 8 – reserved -->
+    <div class="table-tile tile-reserved">
+      <div class="tile-bar bar-blue"></div>
+      <div class="tile-num">8</div>
+      <div class="tile-label label-reserved">Rezervovaný</div>
+      <div class="tile-meta">
+        <span class="tile-amount">Fero</span>
+        <span class="tile-time time-normal">18:00</span>
+      </div>
+    </div>
+    <!-- Stôl 9 – busy -->
+    <div class="table-tile tile-busy">
+      <div class="tile-bar bar-orange"></div>
+      <div class="tile-num">9</div>
+      <div class="tile-label label-busy">2 účty</div>
+      <div class="tile-meta">
+        <span class="tile-amount">1 250 Kč</span>
+        <span class="tile-time time-normal">5 min</span>
+      </div>
     </div>
   </div>
 
-  <!-- BOTTOM BUTTONS -->
-  <div class="bottom-buttons">
-    <div class="btn-save">↓ Uložiť kópiu</div>
-    <div class="btn-print">🖨 Vytlačiť</div>
-  </div>
 </div>
 
 <button id="export-btn">⬇ Export PNG</button>
-
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
   document.getElementById('export-btn').addEventListener('click', function() {
-    const btn = document.getElementById('export-btn');
+    var btn = document.getElementById('export-btn');
     btn.style.display = 'none';
-    html2canvas(document.querySelector('.card'), {
-      backgroundColor: null,
-      scale: 3,
-      useCORS: true,
-      logging: false
+    html2canvas(document.getElementById('card'), {
+      backgroundColor: null, scale: 3, useCORS: true, logging: false
     }).then(function(canvas) {
-      const link = document.createElement('a');
-      link.download = 'pokladna-right.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
+      var a = document.createElement('a');
+      a.download = 'pokladna-right.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
       btn.style.display = '';
     });
   });
