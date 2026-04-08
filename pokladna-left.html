@@ -32,7 +32,11 @@
     border-radius: 20px; padding: 3px 9px;
     font-size: 11px; font-weight: 700; color: #16A34A;
   }
-  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.4); }
+  }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #22C55E; animation: live-pulse 1.4s ease-in-out infinite; }
   .revenue-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 3px; }
   .revenue-amount { font-size: 34px; font-weight: 800; color: #111; letter-spacing: -1.5px; line-height: 1; }
   .revenue-growth { font-size: 12px; font-weight: 700; color: #16A34A; background: #F0FDF4; padding: 3px 7px; border-radius: 20px; }
