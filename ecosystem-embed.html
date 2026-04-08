@@ -26,10 +26,11 @@
 <style>
   .veco-scene {
     position: relative;
-    width: 400px;
-    height: 180px;
+    width: 420px;
+    height: 220px;
     font-family: 'Inter', -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
+    overflow: hidden;
   }
 
   /* ── Floating keyframes – varied rotation + Y for organic feel ── */
@@ -82,16 +83,16 @@
     letter-spacing: 0.1px;
   }
 
-  /* Organic scattered positions — deliberately asymmetric */
-  .veco-p1 { top: 8px;    left: 28px;  animation: veco-f1 4.2s ease-in-out infinite; }
-  .veco-p2 { top: 28px;   right: 4px;  animation: veco-f2 3.9s ease-in-out infinite 0.8s; }
-  .veco-p3 { bottom: 8px; left: 6px;   animation: veco-f3 4.5s ease-in-out infinite 1.4s; }
-  .veco-p4 { bottom: 28px; right: 22px; animation: veco-f4 4.0s ease-in-out infinite 0.4s; }
+  /* Organic — hub is off-center right; pills at varied heights, not just corners */
+  .veco-p1 { top: 6px;    left: 8px;   animation: veco-f1 4.2s ease-in-out infinite; }        /* far top-left */
+  .veco-p2 { top: 68px;   right: -4px; animation: veco-f2 3.9s ease-in-out infinite 0.8s; }   /* mid-right, clips edge */
+  .veco-p3 { bottom: 12px; left: 14px; animation: veco-f3 4.5s ease-in-out infinite 1.4s; }   /* bottom-left */
+  .veco-p4 { bottom: 52px; right: 22px; animation: veco-f4 4.0s ease-in-out infinite 0.4s; }  /* mid-bottom-right */
 
-  /* ── Hub ── */
+  /* ── Hub — offset right of center ── */
   .veco-hub-ring {
     position: absolute;
-    left: 50%; top: 50%;
+    left: 58%; top: 52%;
     transform: translate(-50%, -50%);
     width: 58px; height: 58px;
     border-radius: 50%;
@@ -99,7 +100,7 @@
   }
   .veco-hub {
     position: absolute;
-    left: 50%; top: 50%;
+    left: 58%; top: 52%;
     width: 40px; height: 40px;
     border-radius: 50%;
     background: #ffffff;
@@ -127,16 +128,16 @@
 
 <div class="veco-scene">
 
-  <!-- Lines: viewBox 400×180, hub center at (200, 90)
-       p1: left:28 top:8    → pill ~110×30 → center (83, 23)
-       p2: right:4 top:28   → pill ~130×30 → center (334, 43)
-       p3: left:6  bot:8    → pill ~110×30 → center (61, 157)
-       p4: right:22 bot:28  → pill ~140×30 → center (309, 137) -->
-  <svg class="veco-lines" viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
-    <line x1="83"  y1="23"  x2="200" y2="90" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
-    <line x1="334" y1="43"  x2="200" y2="90" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
-    <line x1="61"  y1="157" x2="200" y2="90" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
-    <line x1="309" y1="137" x2="200" y2="90" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
+  <!-- Lines: viewBox 420×220, hub at (244, 114)
+       p1 top-left:   left:8  top:6    pill~108×30 → center (62, 21)
+       p2 mid-right:  right:-4 top:68  pill~130×30 → center (357, 83)
+       p3 bot-left:   left:14 bot:12   pill~108×30 → center (68, 193)
+       p4 mid-bot-r:  right:22 bot:52  pill~140×30 → center (305, 183) -->
+  <svg class="veco-lines" viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg">
+    <line x1="62"  y1="21"  x2="244" y2="114" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
+    <line x1="357" y1="83"  x2="244" y2="114" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
+    <line x1="68"  y1="193" x2="244" y2="114" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
+    <line x1="305" y1="183" x2="244" y2="114" stroke="#1A1A1A" stroke-width="0.6" stroke-dasharray="2.5 3.5" opacity="0.35"/>
   </svg>
 
   <!-- Hub: white circle + Veslo logo -->
